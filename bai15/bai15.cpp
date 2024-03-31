@@ -154,6 +154,20 @@ public:
         return NameOfStudent;
     }
 
+    // /*Statistics on the number of students by year of admission.*/
+
+    // int NumOfYear()
+    // {
+    //     map<int, int>  Year;
+
+    //     Year[yearOfEnrollment]++;
+    //     return Year[yearOfEnrollment];
+    // }
+    int getYearOfEnrollment() const
+    {
+        return yearOfEnrollment;
+    }
+
     bool isRegular() const
     {
         return !isPartTime;
@@ -268,6 +282,26 @@ public:
         }
     }
 
+    void countStudentsByYear() const
+    {
+        for (const auto &department : departments)
+        {
+            map<int, int> yearCount; // Map to store count of students by enrollment year
+            cout << "Department: " << department.first << endl;
+            for (const auto &student : department.second)
+            {
+                int year = student->getYearOfEnrollment();
+                yearCount[year]++;
+            }
+            // Output the count for each year
+            for (const auto &pair : yearCount)
+            {
+                cout << "Year " << pair.first << ": " << pair.second << " students" << endl;
+            }
+            cout << endl;
+        }
+    }
+
     void addStudentToDepartment()
     {
         string studentName;
@@ -345,6 +379,9 @@ int main()
     university.outputStudents();
     cout << "so sinh vien có diem trung binh co nhat " << endl;
     university.outputEndyear();
+
+    cout << "áhdkajdkasdkashdashdlasdlhsadhaskdhasdjasdjgasdjasjd" << endl;
+    university.countStudentsByYear();
 
     return 0;
 }
